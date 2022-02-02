@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <!--Font Awesome-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <title>Project !</title>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand ms-5" href="#"
+          >HiCoders Group1 - Rahman Dogan - Emin Samed Yılmaz</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse d-flex me-5"
+          id="navbarNavAltMarkup"
+        >
+          <div class="navbar-nav ms-auto text-white">
+            <a
+              class="nav-item nav-link active"
+              onclick="renderHomePage()"
+              href="#"
+              >Home
+            </a>
+            <a class="nav-item nav-link" onclick="classARender()" href="#"
+              >Class A
+            </a>
+            <a class="nav-item nav-link" onclick="classBRender()" href="#"
+              >Class B</a
+            >
+            <a class="nav-item nav-link" onclick="classCRender()" href="#"
+              >Class C</a
+            >
+            <a class="nav-item nav-link" onclick="classFullRender()" href="#"
+              >All Student Report
+            </a>
+            <a class="nav-item nav-link"  href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"  >
+              Add Student
+            </a>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="container-fluid mt-5">
+      <div class="container" id="mainContainer">
+        <div class="row" id="studentListA"></div>
+
+        <div class="row d-flex" id="classAverageContainer"></div>
+        <div class="row" id="classReport">
+          <div class="col-6 mx-auto">
+            <canvas id="myChart" width="400" height="400"></canvas>
+          </div>
+          <div class="col-6 mx-auto">
+            <canvas id="myChart1" width="400" height="400"></canvas>
+          </div>
+          <div class="col-6 mx-auto">
+            <canvas id="myChart2" width="400" height="400"></canvas>
+          </div>
+          <div class="col-6 mx-auto">
+            <canvas id="myChart3" width="400" height="400"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add New Student</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form id="addStudentForm">
+                <div class="mb-3">
+                  <label for="studentName" class="form-label">Student Name</label>
+                  <input type="text" class="form-control" id="studentName" name="studentName" aria-describedby="NameHelp" required>                      
+                </div>
+                
+                <div class="mb-3 d-flex">
+                  <div>
+                    <label for="studentMaths " class="form-label">Student Maths Degree</label>
+                    <input type="number" class="form-control m-2 " id="studentMaths" name="studentMaths" required>
+
+                    <label for="studentPyhsic " class="form-label   ">Student Pyhsic Degree</label>
+                    <input type="number" class="form-control m-2"  id="studentPyhsic" name="studentPyhsic" required>
+                  </div>
+                  <div>
+                    <label for="studentChemist " class="form-label ">Student Chemist Degree</label>
+                    <input type="number" class="form-control m-2  " id="studentChemist" name="studentChemist" required>
+                    
+                    <label for="studentBiologie " class="form-label   ">Student Biologie Degree</label>
+                    <input type="number" class="form-control m-2  " id="studentBiologie" name="studentBiologie" required>
+                  </div>
+                  </div>
+
+                  <div class="input-group mb-3">
+                    <label class="input-group-text" for="ClassName">Class Name</label>
+                    <select class="form-select" id="inputGroupSelect01" name="inputGroupSelect01" >
+                      <option selected>Select Class</option>
+                      <option value="A">A</option>
+                      <option value="B">B</option>
+                      <option value="C">C</option>
+                    </select>
+                  </div>  
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>                      
+                <button id="submitBtn" type="submit" class="btn btn-primary" > Submit</button>
+
+
+              </form>
+            </div>
+            <div class="modal-footer">
+              
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+      integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+      integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./script.js/data.js"></script>
+    <script src="./script.js/dom.js"></script>
+    <script src="./script.js/function.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+    <script src="./script.js/app.js"></script>
+  </body>
+</html>
